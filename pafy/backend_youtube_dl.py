@@ -133,7 +133,7 @@ class YtdlStream(BaseStream):
     def download(self, filepath="", quiet=False, progress="Bytes",
                  callback=None, meta=False, remux_audio=False):
 
-        downloader = youtube_dl.downloader.http.HttpFD(ydl(), params={'http_chunk_size': 10485760})
+        downloader = youtube_dl.downloader.http.HttpFD(ydl(), {'http_chunk_size': 10485760})
 
         progress_available = ["KB", "MB", "GB"]
         if progress not in progress_available:
@@ -189,6 +189,9 @@ class YtdlStream(BaseStream):
 
 
 class ydl:
+    def __init__(self, params):
+        self.params = {}
+
     def urlopen(self, url):
         return g.opener.open(url)
 
