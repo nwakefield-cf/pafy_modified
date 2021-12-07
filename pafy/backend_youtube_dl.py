@@ -3,6 +3,7 @@ import time
 import logging
 import os
 
+
 if sys.version_info[:2] >= (3, 0):
     # pylint: disable=E0611,F0401,I0011
     uni = str
@@ -10,6 +11,7 @@ else:
     uni = unicode
 
 import yt_dlp as youtube_dl
+from yt_dlp import YoutubeDL
 
 from . import g
 from .backend_shared import BasePafy, BaseStream, remux, get_status_string, get_size_done
@@ -188,7 +190,7 @@ class YtdlStream(BaseStream):
         return filepath
 
 
-class ydl:
+class ydl(YoutubeDL):
     def __init__(self):
         self.params = {}
         self._screen_file = sys.stdout
