@@ -191,6 +191,7 @@ class YtdlStream(BaseStream):
 class ydl:
     def __init__(self):
         self.params = {}
+        self._screen_file = sys.stdout
 
     def urlopen(self, url):
         return g.opener.open(url)
