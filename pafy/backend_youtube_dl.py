@@ -189,7 +189,7 @@ class YtdlStream(BaseStream):
 
 
 class ydl:
-    def __init__(self, params):
+    def __init__(self):
         self.params = {}
 
     def urlopen(self, url):
