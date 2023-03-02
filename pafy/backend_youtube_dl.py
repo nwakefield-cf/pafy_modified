@@ -17,7 +17,7 @@ from . import g
 from .backend_shared import BasePafy, BaseStream, remux, get_status_string, get_size_done
 
 dbg = logging.debug
-
+logger = logging.getLogger(__name__)
 
 early_py_version = sys.version_info[:2] < (2, 7)
 
@@ -135,7 +135,7 @@ class YtdlStream(BaseStream):
     def download(self, filepath="", quiet=False, progress="Bytes",
                  callback=None, meta=False, remux_audio=False):
 
-        downloader = youtube_dl.downloader.http.HttpFD(ydl(), {'http_chunk_size': 10485760, 'noprogress': True})
+        downloader = youtube_dl.downloader.http.HttpFD(ydl(), {'http_chunk_size': 10485760})
 
         progress_available = ["KB", "MB", "GB"]
         if progress not in progress_available:
@@ -192,7 +192,7 @@ class YtdlStream(BaseStream):
 
 class ydl(YoutubeDL):
     def __init__(self):
-        self.params = {}
+        self.params = {"logger": logger}
         self._screen_file = sys.stdout
 
     def urlopen(self, url):
