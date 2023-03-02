@@ -13,8 +13,8 @@ from setuptools import setup
 from pafy import __version__
 
 setup(
-    name='pafy-modified',
-    packages=['pafy-modified'],
+    name='pafy',
+    packages=['pafy'],
     scripts=['scripts/ytdl'],
     version=__version__,
     description="Retrieve YouTube content and metadata",
